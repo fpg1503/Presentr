@@ -57,7 +57,7 @@ extension PresentrAnimation: UIViewControllerAnimatedTransitioning {
         return animationDuration
     }
 
-    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let custom = customAnimation(using: transitionContext)
         guard custom == false else {
             return
@@ -88,14 +88,15 @@ extension PresentrAnimation: UIViewControllerAnimatedTransitioning {
         }
 
         animatingView?.frame = initialFrame
-
+        animatingView?.alpha = 1
+        
         UIView.animate(withDuration: duration,
                        delay: 0,
                        usingSpringWithDamping: springDamping,
                        initialSpringVelocity: initialSpringVelocity,
                        options: .allowUserInteraction,
                        animations: {
-
+                        
                         animatingView?.frame = finalFrame
 
         }, completion: { (value: Bool) in
